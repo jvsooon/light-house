@@ -6,7 +6,7 @@ import Carousels from './Carousels.js';
 const Main = () => {
 	return (
 		<MainWrapper>
-			<Hero />
+			{/* <Hero /> */}
 			<Carousels />
 		</MainWrapper>
 	);
