@@ -2,7 +2,7 @@ import Navbar from './components/Navbar.js';
 import GlobalStyle from './globalStyle';
 import styled from 'styled-components';
 import Main from './components/Main.js';
-// import Footer from './components/Footer.js';
+import Footer from './components/Footer.js';
 
 const Wrapper = styled.div`
 	max-width: 87.5em;
@@ -15,7 +15,7 @@ const App = () => {
 			<GlobalStyle />
 			<Navbar />
 			<Main />
-			{/* <Footer /> */}
+			<Footer />
 		</Wrapper>
 	);
 };

@@ -41,34 +41,63 @@ const Carousels = () => {
 		setPage([page + newDirection, newDirection]);
 	};
 
+	const Carousel = ({ list }) => {
+		return (
+			<CaroueslContainer>
+				<ButtonContainer>
+					<PageButton onClick={() => paginate(-1)}>
+						<IoChevronBack size={24} />
+					</PageButton>
+					<PageButton onClick={() => paginate(1)}>
+						<IoChevronForward size={24} />
+					</PageButton>
+				</ButtonContainer>
+				<ImagesContainer>
+					<MotionImage
+						key={page}
+						variants={variants}
+						initial='enter'
+						animate='center'
+						exit='exit'
+						src={require(`../assets/carousel/${list[carouselOneIndex]}.jpg`)}
+						alt={`Lighting fixture photo of slide ${carouselOneIndex}`}
+					/>
+				</ImagesContainer>
+				<PageIndicator list={list} />
+			</CaroueslContainer>
+		);
+	};
+
+	const PageIndicator = ({ list }) => {
+		return (
+			<IndicatorContainer>
+				{list.map((item, index) => (
+					<SingleIndicator
+						key={index}
+						isSelected={index === carouselOneIndex}
+					></SingleIndicator>
+				))}
+			</IndicatorContainer>
+		);
+	};
+
 	return (
 		<Wrapper>
 			<Row>
-				{/* <Title>Lighting Fixtures</Title>
+				<Title>Lighting Fixtures</Title>
 				<Description>{description}</Description>
-				<Button label='Shop Now' /> */}
-				<CaroueslContainer>
-					<ButtonContainer>
-						<PageButton onClick={() => paginate(-1)}>
-							<IoChevronBack size={24} />
-						</PageButton>
-						<PageButton onClick={() => paginate(1)}>
-							<IoChevronForward size={24} />
-						</PageButton>
-					</ButtonContainer>
-					<AnimatePresence initial={false} custom={direction}>
-						<ImagesContainer>
-							<MotionImage
-								key={page}
-								variants={variants}
-								initial='enter'
-								animate='center'
-								exit='exit'
-								src={require(`../assets/carousel/${carouselOne[carouselOneIndex]}.jpg`)}
-							/>
-						</ImagesContainer>
-					</AnimatePresence>
-				</CaroueslContainer>
+				<Button label='Shop Now' />
+				<AnimatePresence initial={false} custom={direction}>
+					<Carousel list={carouselOne} />
+				</AnimatePresence>
+			</Row>
+			<Row>
+				<Title>Light your Way</Title>
+				<Description>{description}</Description>
+				<Button label='Shop Now' />
+				<AnimatePresence initial={false} custom={direction}>
+					<Carousel list={carouselTwo} />
+				</AnimatePresence>
 			</Row>
 		</Wrapper>
 	);
@@ -79,11 +108,11 @@ const Wrapper = styled.section``;
 const Row = styled.div`
 	display: flex;
 	flex-direction: column;
+	margin: 2em 0;
 
 	button {
 		align-self: center;
 	}
-	border: 1px solid red;
 `;
 
 const Title = styled.h2``;
@@ -97,26 +126,22 @@ const CaroueslContainer = styled.div`
 	flex: 1;
 `;
 
-const ImagesContainer = styled.div`
-	/* min-height: calc(20em - 10vw); */
-	/* min-width: calc(20em - 10vw); */
-	/* min-width: 400; */
-	border: 1px solid red;
-`;
+const ImagesContainer = styled.div``;
 
 const MotionImage = styled(motion.img)`
-	position: absolute;
+	/* position: relative; */
 	border-radius: 4em;
-	/* max-width: 400px; */
 `;
 
 const ButtonContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
-	/* margin-top: 20vh; */
-	/* position: relative; */
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	padding-inline: 0.5em;
 	z-index: 1;
-	border: 1px solid red;
 `;
 
 const PageButton = styled.div`
@@ -126,6 +151,28 @@ const PageButton = styled.div`
 	align-items: center;
 	padding: 0.5em;
 	border-radius: 2em;
+	opacity: 30%;
+	transition: all 0.3s ease-in-out;
+
+	:hover {
+		opacity: 50%;
+	}
+`;
+
+const IndicatorContainer = styled.div`
+	display: flex;
+	justify-content: center;
+`;
+
+const SingleIndicator = styled.div`
+	background-color: ${({ isSelected }) =>
+		isSelected ? 'black' : colors.light_grey};
+	margin-inline: 0.3em;
+	height: 10px;
+	width: 10px;
+	border-radius: 1em;
+	margin-top: -1em;
+	z-index: 1;
 `;
 
 export default Carousels;

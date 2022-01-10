@@ -40,7 +40,9 @@ const Hero = () => {
 	);
 };
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+padding-top: 0;
+`;
 
 const TopWrapper = styled.div``;
 
@@ -65,20 +67,6 @@ const ContentWrapper = styled.div`
 const Desccription = styled.p`
 	color: ${colors.dark_grey};
 `;
-
-// const Button = styled.button`
-// 	background: ${colors.dark_pink};
-// 	border: none;
-// 	font-weight: bold;
-// 	padding: 1em 3em;
-// 	margin: 3em;
-// 	border-radius: 2em;
-// 	transition: all 0.3s ease-in-out;
-
-// 	&:hover {
-// 		filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.1));
-// 	}
-// `;
 
 const MiddleLight = styled.img``;
 

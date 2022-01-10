@@ -104,6 +104,7 @@ const NavItemLink = styled.a`
 
 const MenuOpen = styled.div`
 	cursor: pointer;
+	display: flex;
 
 	@media (min-width: 600px) {
 		display: none;

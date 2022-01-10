@@ -15,7 +15,7 @@ const Btn = styled.button`
 	border: none;
 	font-weight: bold;
 	padding: 1em 3em;
-	margin: 3em 0;
+	margin: 2em 0;
 	border-radius: 2em;
 	transition: all 0.3s ease-in-out;
 

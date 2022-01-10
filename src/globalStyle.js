@@ -41,6 +41,10 @@ const GlobalStyle = createGlobalStyle`
     header, main, footer {
         padding: 0 5%;
     }
+
+    section {
+        padding: 1em 0;
+    }
 `;
 
 export default GlobalStyle;
