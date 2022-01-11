@@ -15,7 +15,7 @@ const App = () => {
 			<GlobalStyle />
 			<Navbar />
 			<Main />
-			<Footer />
+			{/* <Footer /> */}
 		</Wrapper>
 	);
 };

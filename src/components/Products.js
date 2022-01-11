@@ -23,17 +23,29 @@ const Products = () => {
 	);
 };
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+`;
 
 const Product = styled.div`
-	margin: 2em 0;
+	margin: 3em 1em;
+
+	@media (min-width: 768px) {
+	}
 `;
 
 const Image = styled.img`
 	border-radius: 4em;
-	min-height: 27em;
+	min-height: 20em;
+	max-height: 24em;
 	object-fit: cover;
-`;
+	max-width: 260px;
+	height: 100%;
+	/* height: auto; */
+`;	/* margin-inline: 1em; */
+
 
 const Label = styled.span`
 	display: block;

@@ -26,15 +26,30 @@ const Wrapper = styled.section`
 	padding: 2em;
 	border-radius: 3em;
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+
+	@media (min-width: 768px) {
+		flex-direction: row;
+		justify-content: space-between;
+		text-align: left;
+		align-items: center;
+		padding: 2em 4em;
+	}
 `;
 
 const Left = styled.div`
 	margin-bottom: 2em;
+	/* flex: 1; */
 `;
 
 const Right = styled.div`
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	/* flex: 1; */
+	/* align-items: flex-end; */
+	max-width: 25em;
+	width: 100%;
 `;
 
 const PreTitle = styled.span`
@@ -66,10 +81,14 @@ const Button = styled.button`
 	margin: 2em 0;
 	border-radius: 3em;
 	transition: all 0.3s ease-in-out;
-    align-self: center;
+	align-self: center;
 
 	&:hover {
 		filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.1));
+	}
+
+	@media (min-width: 768px) {
+		align-self: start;
 	}
 `;
 

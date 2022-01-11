@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../utils/colors';
-import Button from './Button.js';
 import { motion, AnimatePresence } from 'framer-motion';
 import { wrap } from '@popmotion/popcorn';
 import { IoChevronForward, IoChevronBack } from 'react-icons/io5';
-import Carousel from './Carousel.js';
 
-const description =
-	'Light is at the foundation of space design. Alongside architects, interior designers, lighting designers, engineers and dealers, we aim to improve the world through a single aspiration: creating better spaces to live. A fresh, modern take on the traditional captain living and dining spaces.';
-const carouselOne = ['slide-1', 'slide-2', 'slide-3'];
-const carouselTwo = ['slide-4', 'slide-5', 'slide-6'];
 const variants = {
 	enter: (direction) => {
 		return {
@@ -33,57 +27,54 @@ const variants = {
 	},
 };
 
-const Carousels = () => {
+const Carousel = ({ list }) => {
+	const [[page, direction], setPage] = useState([0, 0]);
+	const carouselIndex = wrap(0, list.length, page);
+
+	const paginate = (newDirection) => {
+		setPage([page + newDirection, newDirection]);
+	};
+
+	const PageIndicator = () => {
+		return (
+			<IndicatorContainer>
+				{list.map((item, index) => (
+					<SingleIndicator
+						key={index}
+						isSelected={index === carouselIndex}
+					></SingleIndicator>
+				))}
+			</IndicatorContainer>
+		);
+	};
+
 	return (
-		<Wrapper>
-			<Row reverse={false}>
-				<RowContent>
-					<Title>Lighting Fixtures</Title>
-					<Description>{description}</Description>
-					<Button label='Shop Now' />
-				</RowContent>
-				<Carousel list={carouselOne} />
-			</Row>
-			<Row reverse={true}>
-				<RowContent>
-					<Title>Light your Way</Title>
-					<Description>{description}</Description>
-					<Button label='Shop Now' />
-				</RowContent>
-				<Carousel list={carouselTwo} />
-			</Row>
-		</Wrapper>
+		<AnimatePresence initial={false} custom={direction}>
+			<CaroueslContainer>
+				<ButtonContainer>
+					<PageButton onClick={() => paginate(-1)}>
+						<IoChevronBack size={24} />
+					</PageButton>
+					<PageButton onClick={() => paginate(1)}>
+						<IoChevronForward size={24} />
+					</PageButton>
+				</ButtonContainer>
+				<ImagesContainer>
+					<MotionImage
+						key={page}
+						variants={variants}
+						initial='enter'
+						animate='center'
+						exit='exit'
+						src={require(`../assets/carousel/${list[carouselIndex]}.jpg`)}
+						alt={`Lighting fixture photo of slide ${carouselIndex}`}
+					/>
+				</ImagesContainer>
+				<PageIndicator />
+			</CaroueslContainer>
+		</AnimatePresence>
 	);
 };
-
-const Wrapper = styled.section``;
-
-const Row = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 2em 0;
-	justify-content: space-between;
-
-	button {
-		align-self: center;
-	}
-
-	@media (min-width: 900px) {
-		flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
-	}
-`;
-
-const RowContent = styled.div`
-	flex: 0.9;
-	padding: 0 2em;
-`;
-
-const Title = styled.h2``;
-
-const Description = styled.p`
-	color: ${colors.dark_grey};
-`;
 
 const CaroueslContainer = styled.div`
 	position: relative;
@@ -141,4 +132,4 @@ const SingleIndicator = styled.div`
 	z-index: 1;
 `;
 
-export default Carousels;
+export default Carousel;

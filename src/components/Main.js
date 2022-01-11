@@ -9,10 +9,10 @@ import MailingList from './MailingList.js';
 const Main = () => {
 	return (
 		<MainWrapper>
-			<Hero />
-			<Carousels />
-			<Banner />
-			<Products />
+			{/* <Hero /> */}
+			{/* <Carousels /> */}
+			{/* <Banner /> */}
+			{/* <Products /> */}
 			<MailingList />
 		</MainWrapper>
 	);

@@ -31,8 +31,9 @@ const GlobalStyle = createGlobalStyle`
     }
 
     h1 {
-        font-size: clamp(2.986rem, 2.7404rem + 1.2281vw, 3.815rem);
-    }
+        /* font-size: clamp(2.986rem, 2.7404rem + 1.2281vw, 3.815rem); */
+        /* font-size: clamp(2.986rem, 2.2085rem + 3.8874vw, 5.61rem); */
+        font-size: clamp(2.986rem, 1.5024rem + 7.4178vw, 7.993rem);    }
 
     h2 {
         font-size: clamp(1.802rem, 1.4316rem + 1.8519vw, 3.052rem);

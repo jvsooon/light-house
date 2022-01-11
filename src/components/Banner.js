@@ -35,9 +35,15 @@ const Wrapper = styled.section`
 	align-items: center;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
+
 	> div {
 		margin: 1em 0;
 		display: flex;
+	}
+
+	@media (min-width: 900px) {
+		flex-direction: row;
+		justify-content: space-around;
 	}
 `;
 
@@ -52,9 +58,14 @@ const Right = styled.div`
 `;
 
 const Divider = styled.div`
-	width: 80%;
 	background: black;
+	width: 90%;
 	height: 1px;
+
+	@media (min-width: 900px) {
+		width: 10%;
+		transform: rotate(90deg);
+	}
 `;
 
 const BannerTitle = styled.span`
