@@ -1,3 +1,4 @@
+import { wrap } from '@popmotion/popcorn';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -27,13 +28,15 @@ const Wrapper = styled.section`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
+	padding-bottom: 3em;
+
+	div:first-child {
+		margin-bottom: -1em;
+	}
 `;
 
 const Product = styled.div`
 	margin: 3em 1em;
-
-	@media (min-width: 768px) {
-	}
 `;
 
 const Image = styled.img`
@@ -43,9 +46,7 @@ const Image = styled.img`
 	object-fit: cover;
 	max-width: 260px;
 	height: 100%;
-	/* height: auto; */
-`;	/* margin-inline: 1em; */
-
+`;
 
 const Label = styled.span`
 	display: block;

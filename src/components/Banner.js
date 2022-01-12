@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IoChevronForward } from 'react-icons/io5';
+import Sparkle from '../assets/hero/sparkle.jpg';
 
 const Banner = () => {
 	return (
@@ -51,7 +52,13 @@ const Left = styled.div`
 	align-items: center;
 `;
 
-const Middle = styled.div``;
+const Middle = styled.div`
+	/* background-image: url(Sparkle); */
+	/* background: url(../assets/hero/sparkle.jpg) no-repeat;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	-webkit-background-clip: text; */
+`;
 
 const Right = styled.div`
 	align-items: center;
@@ -86,7 +93,7 @@ const LinkButton = styled.div`
 	align-items: center;
 	padding: 0.5em;
 	border-radius: 2em;
-
+	cursor: pointer;
 	filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.1));
 `;
 

@@ -53,7 +53,7 @@ const Footer = () => {
 const Wrapper = styled.footer`
 	display: flex;
 	flex-wrap: wrap;
-    padding: 2em 1em;
+	margin: 4em auto;
 `;
 
 const Column = styled.div`
@@ -71,7 +71,7 @@ const ColumnTitle = styled.span`
 
 const LogoText = styled.span`
 	font-weight: bold;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 `;
 
 const Links = styled.a`

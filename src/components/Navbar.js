@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../utils/colors';
 import { IoMenu, IoBag, IoClose } from 'react-icons/io5';
-import UserImage from '../assets/user.jpg';
+import UserImage from '../assets/user.png';
+
 const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -61,7 +62,7 @@ const Nav = styled.nav`
 
 const LogoText = styled.span`
 	font-weight: bold;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 `;
 
 const NavMenuWrapper = styled.div`
@@ -72,7 +73,7 @@ const NavMenuWrapper = styled.div`
 	top: 0;
 	transform: translateX(${({ isOpen }) => (isOpen ? 0 : '100%')});
 	transition: all 0.3s ease-in-out;
-	background: white;
+	background: ${colors.light_pink};
 	box-shadow: 0px 0 5px 1px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 	padding: 1em 1em;
@@ -89,13 +90,14 @@ const NavMenuWrapper = styled.div`
 
 const NavMenu = styled.ul`
 	list-style: none;
-	padding: 0;
+	padding: 1.5em 0.5em;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 
 	@media (min-width: 768px) {
 		flex-direction: row;
+		padding: 0;
 	}
 `;
 
@@ -110,7 +112,7 @@ const NavMenuItem = styled.li`
 const NavItemLink = styled.a`
 	text-decoration: none;
 	font-weight: 600;
-	color: black;
+	color: ${colors.dark_grey};
 	cursor: pointer;
 `;
 
@@ -125,6 +127,8 @@ const MenuOpen = styled.div`
 
 const MenuClose = styled.div`
 	cursor: pointer;
+	color: ${colors.dark_grey};
+	padding: 0 0.4em;
 
 	@media (min-width: 768px) {
 		display: none;
@@ -144,6 +148,7 @@ const Avatar = styled.img`
 	max-width: 2.8em;
 	border-radius: 2em;
 	margin-inline: 1em;
+	cursor: pointer;
 `;
 
 const IconContainer = styled.div`
@@ -154,6 +159,7 @@ const IconContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	cursor: pointer;
 `;
 
 export default Navbar;

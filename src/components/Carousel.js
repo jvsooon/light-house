@@ -110,6 +110,7 @@ const PageButton = styled.div`
 	border-radius: 2em;
 	opacity: 30%;
 	transition: all 0.3s ease-in-out;
+	cursor: pointer;
 
 	:hover {
 		opacity: 50%;

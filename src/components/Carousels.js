@@ -62,7 +62,7 @@ const Row = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 2em 0;
+	margin: 1em 0;
 	justify-content: space-between;
 
 	button {
@@ -76,7 +76,9 @@ const Row = styled.div`
 
 const RowContent = styled.div`
 	flex: 0.9;
-	padding: 0 2em;
+	@media (min-width: 900px) {
+		padding: 0 2em;
+	}
 `;
 
 const Title = styled.h2``;
@@ -94,7 +96,6 @@ const CaroueslContainer = styled.div`
 const ImagesContainer = styled.div``;
 
 const MotionImage = styled(motion.img)`
-	/* position: relative; */
 	border-radius: 25%;
 	width: 100%;
 `;

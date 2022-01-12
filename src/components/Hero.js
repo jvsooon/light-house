@@ -5,10 +5,16 @@ import MLightSrc from '../assets/hero/light-1.png';
 import LLightSrc from '../assets/hero/light-2.png';
 import RLightSrc from '../assets/hero/light-3.png';
 import Button from './Button.js';
+import Pattern from '../assets/hero/pattern.svg'
 
 const Hero = () => {
+	const Dot = ({ color, yFix, size }) => {
+		return <DotItem color={color} yFix={yFix} size={size}></DotItem>;
+	};
+
 	return (
 		<Wrapper>
+			<Background src={Pattern}/>
 			<TopWrapper>
 				<TitleWrapper>
 					<Title>Light</Title>
@@ -20,7 +26,10 @@ const Hero = () => {
 				/>
 			</TopWrapper>
 			<BottomWrapper>
-				<LeftLight src={LLightSrc} alt='Photo of grey hanging light.' />
+				<LightContainer left={true} top={-14}>
+					<Dot color={'#323230'} yFix={true} size={1.6} />
+					<Light src={LLightSrc} alt='Photo of grey hanging light.' />
+				</LightContainer>
 				<ContentWrapper>
 					<Description>
 						Light is at the foundation of space design. Lighthouse is a
@@ -31,10 +40,13 @@ const Hero = () => {
 					</Description>
 					<Button label='Shop Now' />
 				</ContentWrapper>
-				<RightLight
-					src={RLightSrc}
-					alt='Photo of grenn and pink chandilier type hanging light.'
-				/>
+				<LightContainer left={false} top={-10}>
+					<Dot color={`${colors.light_grey}`} yFix={false} size={1.6} />
+					<Light
+						src={RLightSrc}
+						alt='Photo of grenn and pink chandilier type hanging light.'
+					/>
+				</LightContainer>
 			</BottomWrapper>
 		</Wrapper>
 	);
@@ -43,6 +55,17 @@ const Hero = () => {
 const Wrapper = styled.section`
 	padding-top: 0;
 `;
+
+const Background = styled.img`
+	width: 100%;
+	height: 50%;
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	top: 8em;
+	object-fit: fill;
+
+`
 
 const TopWrapper = styled.div`
 	display: flex;
@@ -58,28 +81,22 @@ const BottomWrapper = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-	display: flex;
 	position: absolute;
+	display: flex;
 	justify-content: space-around;
-	width: 50;
-	/* border: 1px solid red; */
-	/* left: 50%; */
-	/* transform: translateX(-50%); */
+	width: 90%;
 	margin: 9vh 0;
 `;
 
-const Title = styled.h1`
-	margin-inline: 7vw;
-`;
+const Title = styled.h1``;
 
 const ContentWrapper = styled.div`
 	text-align: center;
-	margin: 2em 0;
+	margin-top: 2em;
 
 	@media (min-width: 1200px) {
 		position: absolute;
 		padding-inline: 29vw;
-		/* margin: 2em 19em; */
 		left: 0;
 	}
 `;
@@ -88,34 +105,35 @@ const Description = styled.p`
 	color: ${colors.dark_grey};
 `;
 
+const DotItem = styled.div`
+	background: ${({ color }) => color};
+	width: ${({ size }) => size}em;
+	height: ${({ size }) => size}em;
+	border-radius: 50%;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-left: ${({ yFix }) => (yFix == true ? 0.4 : -0.2)}em;
+	top: -1em;
+`;
+
+const LightContainer = styled.div`
+	max-width: ${({ left }) => (left ? 400 : 150)}px;
+	margin-left: ${({ left }) => (left ? '-3' : 0)}em;
+	margin-top: ${({ top }) => top}em;
+	position: relative;
+	display: none;
+
+	@media (min-width: 1200px) {
+		display: block;
+	}
+`;
+
 const MiddleLight = styled.img`
-	/* border: 1px solid red; */
 	width: 100%;
 	max-width: 500px;
 `;
 
-const LeftLight = styled.img`
-	display: none;
-	/* border: 1px solid red; */
-
-	@media (min-width: 1200px) {
-		display: block;
-		max-width: 400px;
-		margin-left: -2em;
-		margin-top: -16em;
-	}
-`;
-
-const RightLight = styled.img`
-	display: none;
-	/* border: 1px solid red; */
-
-	@media (min-width: 1200px) {
-		display: block;
-		max-width: 150px;
-		margin-top: -12em;
-		height: 100%;
-	}
-`;
+const Light = styled.img``;
 
 export default Hero;
