@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IoChevronForward } from 'react-icons/io5';
-import Sparkle from '../assets/hero/sparkle.jpg';
+// import Sparkle from '../assets/sparkle.jpg';
 
 const Banner = () => {
 	return (
@@ -76,7 +76,7 @@ const Divider = styled.div`
 `;
 
 const BannerTitle = styled.span`
-	font-size: clamp(2.986rem, 2.7404rem + 1.2281vw, 3.815rem);
+	font-size: clamp(2.488rem, 1.9781rem + 2.5496vw, 4.209rem);
 	font-family: 'Playfair Display', serif;
 	text-align: center;
 	font-weight: bold;

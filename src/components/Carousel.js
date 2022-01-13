@@ -29,7 +29,8 @@ const variants = {
 
 const Carousel = ({ list }) => {
 	const [[page, direction], setPage] = useState([0, 0]);
-	const carouselIndex = wrap(0, list.length, page);
+
+	const imageIndex = wrap(0, list.length, page);
 
 	const paginate = (newDirection) => {
 		setPage([page + newDirection, newDirection]);
@@ -41,7 +42,7 @@ const Carousel = ({ list }) => {
 				{list.map((item, index) => (
 					<SingleIndicator
 						key={index}
-						isSelected={index === carouselIndex}
+						isSelected={index === imageIndex}
 					></SingleIndicator>
 				))}
 			</IndicatorContainer>
@@ -49,75 +50,67 @@ const Carousel = ({ list }) => {
 	};
 
 	return (
-		<AnimatePresence initial={false} custom={direction}>
-			<CaroueslContainer>
-				<ButtonContainer>
-					<PageButton onClick={() => paginate(-1)}>
-						<IoChevronBack size={24} />
-					</PageButton>
-					<PageButton onClick={() => paginate(1)}>
-						<IoChevronForward size={24} />
-					</PageButton>
-				</ButtonContainer>
-				<ImagesContainer>
-					<MotionImage
-						key={page}
-						variants={variants}
-						initial='enter'
-						animate='center'
-						exit='exit'
-						src={require(`../assets/carousel/${list[carouselIndex]}.jpg`)}
-						alt={`Lighting fixture photo of slide ${carouselIndex}`}
-					/>
-				</ImagesContainer>
-				<PageIndicator />
-			</CaroueslContainer>
-		</AnimatePresence>
+		<CaroueslContainer>
+			<AnimatePresence initial={false} custom={direction}>
+				<MotionImage
+					key={page}
+					variants={variants}
+					custom={direction}
+					initial='enter'
+					animate='center'
+					exit='exit'
+					src={require(`../assets/carousel/${list[imageIndex]}.jpg`)}
+					alt={`Lighting fixture photo of slide ${imageIndex}`}
+					transition={{
+						x: { type: 'tween' },
+					}}
+				/>
+			</AnimatePresence>
+			<PageButton prev={true} onClick={() => paginate(-1)}>
+				<IoChevronBack size={24} />
+			</PageButton>
+			<PageButton next={true} onClick={() => paginate(1)}>
+				<IoChevronForward size={24} />
+			</PageButton>
+			<PageIndicator />
+		</CaroueslContainer>
 	);
 };
 
 const CaroueslContainer = styled.div`
+	max-width: 450px;
 	position: relative;
-	margin: 1em 0;
-	max-width: 400px;
-`;
-
-const ImagesContainer = styled.div``;
-
-const MotionImage = styled(motion.img)`
-	/* position: relative; */
-	border-radius: 25%;
-	width: 100%;
-`;
-
-const ButtonContainer = styled.div`
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	padding-inline: 0.5em;
-	z-index: 1;
-`;
-
-const PageButton = styled.div`
-	background: lightgrey;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
+`;
+
+const MotionImage = styled(motion.img)`
+	border-radius: 25%;
+`;
+
+const PageButton = styled.div`
+	top: calc(50% - 20px);
+	position: absolute;
+	background: lightgrey;
+	border-radius: 30px;
 	padding: 0.5em;
-	border-radius: 2em;
 	opacity: 30%;
-	transition: all 0.3s ease-in-out;
+	display: flex;
+	z-index: 2;
+	right: ${({ next }) => (next ? 10 : null)}px;
+	left: ${({ prev }) => (prev ? 10 : null)}px;
 	cursor: pointer;
 
 	:hover {
-		opacity: 50%;
+		opacity: 60%;
 	}
 `;
 
 const IndicatorContainer = styled.div`
+	position: absolute;
+	top: 95%;
 	display: flex;
 	justify-content: center;
 `;

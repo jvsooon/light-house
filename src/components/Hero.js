@@ -5,7 +5,7 @@ import MLightSrc from '../assets/hero/light-1.png';
 import LLightSrc from '../assets/hero/light-2.png';
 import RLightSrc from '../assets/hero/light-3.png';
 import Button from './Button.js';
-import Pattern from '../assets/hero/pattern.svg'
+import Pattern from '../assets/hero/pattern.svg';
 
 const Hero = () => {
 	const Dot = ({ color, yFix, size }) => {
@@ -14,7 +14,7 @@ const Hero = () => {
 
 	return (
 		<Wrapper>
-			<Background src={Pattern}/>
+			<Background src={Pattern} />
 			<TopWrapper>
 				<TitleWrapper>
 					<Title>Light</Title>
@@ -64,8 +64,7 @@ const Background = styled.img`
 	left: 0;
 	top: 8em;
 	object-fit: fill;
-
-`
+`;
 
 const TopWrapper = styled.div`
 	display: flex;
